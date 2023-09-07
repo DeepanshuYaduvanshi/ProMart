@@ -5,7 +5,7 @@
 /frontend/.pnp
 /frontend/.pnp.js
 
-/config/config.env
+./config/config.env
 
 # testing
 /frontend/coverage
@@ -13,6 +13,7 @@
 
 # misc
 /backend/config/config.env
+/config.env
 /frontend/.DS_Store
 /frontend/.env.local
 /frontend/.env.development.local
