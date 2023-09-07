@@ -11,8 +11,8 @@
 .aboutSectionGradient {
   background-image: linear-gradient(
     to bottom right,
-    rgb(78, 81, 255),
-    rgb(74, 137, 189)
+    #c392f3,
+    #9f45f9
   );
 }
 
@@ -33,7 +33,7 @@
 
 .aboutSectionContainer > h1 {
   font: 400 3vmax "Roboto";
-  color: tomato;
+  color: #902bf5;
   margin: 2vmax;
 }
 

@@ -1,7 +1,7 @@
 .paymentContainer {
   display: grid;
   place-items: center;
-  background-color: rgb(255, 255, 255);
+  background-color:white;
   height: 65vh;
   margin: 2vmax;
 }
@@ -46,7 +46,7 @@
 
 .paymentFormBtn {
   border: none;
-  background-color: tomato;
+  background-color: #902bf5;
   color: white;
   font: 300 0.9vmax "Roboto";
   width: 100%;
@@ -57,7 +57,7 @@
 }
 
 .paymentFormBtn:hover {
-  background-color: rgb(179, 66, 46);
+  background-color: #6e04d8;
 }
 
 @media screen and (max-width: 600px) {

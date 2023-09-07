@@ -77,32 +77,37 @@ exports.forgotPassword = catchAsyncErrors(async (req, res, next) => {
 
   // Get ResetPassword Token
   const resetToken = user.getResetPasswordToken();
-
+  // getResetPasswordToken se sirf userSchema me add hua h resetpasswordtoken and abhi save nhi hua and kyuki user login h to save nhi hua h abhi to hme phle db me save krna h means new change save in schema
+   // save kiya schema
   await user.save({ validateBeforeSave: false });
-
+ // jo url send krna h mail pr vo bna rhe h 
+  //                         http or https      konsa host h like localhost
   const resetPasswordUrl = `${req.protocol}://${req.get(
     "host"
-  )}/password/reset/${resetToken}`;
+  )}/password/reset/${resetToken}`; // and last me route ke baad resetToken attach kr diya url me
 
+  // mail pr konsa msg bhejna h vo bna rhe h     \n for new line      url
   const message = `Your password reset token is :- \n\n ${resetPasswordUrl} \n\nIf you have not requested this email then, please ignore it.`;
 
   try {
+    // ye function util me bnaya h send email ka isme hm bta rhe ki user ki email pr message send kr dena with given subject 
     await sendEmail({
       email: user.email,
-      subject: `Ecommerce Password Recovery`,
+      subject: `ProMart Password Recovery`,
       message,
     });
-
+// response me message send kr rhe
     res.status(200).json({
       success: true,
       message: `Email sent to ${user.email} successfully`,
     });
   } catch (error) {
+    // agar email send nhi ho payi to jaldi se jo change kiye the schema me use revert back kr do and save krdo schema means phle jaise krdo 
     user.resetPasswordToken = undefined;
     user.resetPasswordExpire = undefined;
 
     await user.save({ validateBeforeSave: false });
-
+ // error throw
     return next(new ErrorHander(error.message, 500));
   }
 });
@@ -130,7 +135,7 @@ exports.resetPassword = catchAsyncErrors(async (req, res, next) => {
   }
 
   if (req.body.password !== req.body.confirmPassword) {
-    return next(new ErrorHander("Password does not password", 400));
+    return next(new ErrorHander("Password does not match", 400));
   }
 
   user.password = req.body.password;
@@ -238,12 +243,22 @@ exports.getSingleUser = catchAsyncErrors(async (req, res, next) => {
 
 // update User Role -- Admin
 exports.updateUserRole = catchAsyncErrors(async (req, res, next) => {
+  
+
+  const user = await User.findById(req.params.id);
+
+  if (!user) {
+    return next(
+      new ErrorHander(`User does not exist with Id: ${req.params.id}`, 400)
+    );
+  }
+
   const newUserData = {
     name: req.body.name,
     email: req.body.email,
     role: req.body.role,
   };
-
+  
   await User.findByIdAndUpdate(req.params.id, newUserData, {
     new: true,
     runValidators: true,

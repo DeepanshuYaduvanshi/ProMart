@@ -1,7 +1,7 @@
 .newProductContainer {
   width: 100%;
   box-sizing: border-box;
-  background-color: rgb(221, 221, 221);
+  background-color: rgb(255, 255, 255);
   border-left: 1px solid rgba(0, 0, 0, 0.158);
   display: flex;
   flex-direction: column;
@@ -67,11 +67,11 @@
   transition: all 0.5s;
   padding: 0 1vmax;
   color: rgba(0, 0, 0, 0.623);
-  background-color: rgb(255, 255, 255);
+  background-color: #902bf5;
 }
 
 #createProductFormFile > input::file-selector-button:hover {
-  background-color: rgb(235, 235, 235);
+  background-color: #6e04d8;
 }
 
 #createProductFormImage {
@@ -85,7 +85,7 @@
 }
 #createProductBtn {
   border: none;
-  background-color: tomato;
+  background-color: #902bf5;
   color: white;
   font: 300 0.9vmax "Roboto";
   width: 100%;
@@ -98,12 +98,12 @@
 }
 
 #createProductBtn:hover {
-  background-color: rgb(179, 66, 46);
+  background-color: #7109d9;
 }
 
 @media screen and (max-width: 600px) {
   .newProductContainer {
-    background-color: rgb(255, 255, 255);
+    background-color: #902bf5;
   }
   .createProductForm {
     padding: 5vmax;
