@@ -9,5 +9,8 @@
         "src" : "/(.*)" ,
         "dest" : "/server.js"
       }
-    ]
+    ],
+    "engines": {
+      "node": "15.14.0"
+    }
   }
