@@ -54,7 +54,7 @@ const Payment = ({ history }) => {
       const config = {
         headers: {
           "Content-Type": "application/json",
-          // "Authorization": `Bearer sk_test_51NXKbPSG8OyI7jbT66rowxhfp1DNkYANcbB7QPmkSfkAz3IyPnqxxZezcMn9uWXvHpnUyM7L213M0oyiJVNms6Oh00XNLjXRWX`,
+          "Authorization": `Bearer sk_test_51NXKbPSG8OyI7jbT66rowxhfp1DNkYANcbB7QPmkSfkAz3IyPnqxxZezcMn9uWXvHpnUyM7L213M0oyiJVNms6Oh00XNLjXRWX`,
 
         },
       };
