@@ -32,9 +32,9 @@ import {
 } from "../constants/productConstants";
 
 // Get All Products
-const instance = axios.create({
-  baseURL : "https://pro-mart.vercel.app",
-});
+// const instance = axios.create({
+//   baseURL : "https://pro-mart.vercel.app",
+// });
 export const getProduct =
   (keyword = "", currentPage = 1, price = [0, 25000], category, ratings = 0) =>
   async (dispatch) => {
@@ -47,7 +47,7 @@ export const getProduct =
         link = `/api/v1/products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&category=${category}&ratings[gte]=${ratings}`;
       }
 
-      const { data } = await instance.get(link);
+      const { data } = await axios.get(link);
 
       dispatch({
         type: ALL_PRODUCT_SUCCESS,
