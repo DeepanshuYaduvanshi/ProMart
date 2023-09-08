@@ -43,11 +43,12 @@ import Contact from "./component/layout/Contact/Contact";
 import About from "./component/layout/About/About";
 import NotFound from "./component/layout/Not Found/NotFound";
 
+
 function App() {
   const { isAuthenticated, user } = useSelector((state) => state.user);
-
+  
   const [stripeApiKey, setStripeApiKey] = useState("");
-
+  
   async function getStripeApiKey() {
     const { data } = await axios.get("/api/v1/stripeapikey");
 
