@@ -5,9 +5,14 @@ import {
 } from "../constants/cartConstants";
 import axios from "axios";
 
+
+const helper = axios.create({
+  // baseURL : "https://pro-mart.vercel.app",
+  baseURL : "https://pro-mart-deepanshu-12011111-nitkkracin.vercel.app",
+});
 // Add to Cart
 export const addItemsToCart = (id, quantity) => async (dispatch, getState) => {
-  const { data } = await axios.get(`/api/v1/product/${id}`);
+  const { data } = await helper.get(`/api/v1/product/${id}`);
 
   dispatch({
     type: ADD_TO_CART,

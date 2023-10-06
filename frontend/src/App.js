@@ -43,6 +43,10 @@ import Contact from "./component/layout/Contact/Contact";
 import About from "./component/layout/About/About";
 import NotFound from "./component/layout/Not Found/NotFound";
 
+const helper = axios.create({
+  // baseURL : "https://pro-mart.vercel.app",
+  baseURL : "https://pro-mart-deepanshu-12011111-nitkkracin.vercel.app",
+});
 
 function App() {
   const { isAuthenticated, user } = useSelector((state) => state.user);
@@ -50,7 +54,7 @@ function App() {
   const [stripeApiKey, setStripeApiKey] = useState("");
   
   async function getStripeApiKey() {
-    const { data } = await axios.get("/api/v1/stripeapikey");
+    const { data } = await helper.get("/api/v1/stripeapikey");
 
     setStripeApiKey(data.stripeApiKey);
   }

@@ -19,6 +19,11 @@ import EventIcon from "@material-ui/icons/Event";
 import VpnKeyIcon from "@material-ui/icons/VpnKey";
 import { createOrder, clearErrors } from "../../actions/orderAction";
 
+const helper = axios.create({
+  // baseURL : "https://pro-mart.vercel.app",
+  baseURL : "https://pro-mart-deepanshu-12011111-nitkkracin.vercel.app",
+});
+
 const Payment = ({ history }) => {
   const orderInfo = JSON.parse(sessionStorage.getItem("orderInfo"));
 
@@ -58,7 +63,7 @@ const Payment = ({ history }) => {
 
         },
       };
-      const { data } = await axios.post(
+      const { data } = await helper.post(
         "/api/v1/payment/process",
         paymentData,
         config
