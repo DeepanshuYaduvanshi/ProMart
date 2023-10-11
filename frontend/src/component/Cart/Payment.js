@@ -21,7 +21,7 @@ import { createOrder, clearErrors } from "../../actions/orderAction";
 
 const helper = axios.create({
   // baseURL : "https://pro-mart.vercel.app",
-  baseURL : "https://pro-mart-deepanshu-12011111-nitkkracin.vercel.app",
+  baseURL : "https://pro-mart.vercel.app",
 });
 
 const Payment = ({ history }) => {

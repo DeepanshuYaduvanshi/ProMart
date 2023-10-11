@@ -39,8 +39,7 @@ import {
 import axios from "axios";
 
 const helper = axios.create({
-  // baseURL : "https://pro-mart.vercel.app",
-  baseURL : "https://pro-mart-deepanshu-12011111-nitkkracin.vercel.app",
+  baseURL : "https://pro-mart.vercel.app",
 });
 
 // Login

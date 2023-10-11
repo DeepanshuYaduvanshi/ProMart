@@ -30,6 +30,21 @@ app.use((req, res, next) => {
   next();
 });
 
+
+// app.use((req, res, next) => {
+//   res.setHeader('Access-Control-Allow-Origin', 'https://pro-mart.vercel.app'); // Replace with your allowed origin(s)
+//   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE');
+//   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+//   res.setHeader('Access-Control-Allow-Credentials', 'true'); // If your app uses credentials or cookies
+//   next();
+// });
+
+// app.options('*', (req, res) => {
+//   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE');
+//   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+//   res.status(204).end();
+// });
+
 app.use("/api/v1", product);
 app.use("/api/v1", user);
 app.use("/api/v1", order);

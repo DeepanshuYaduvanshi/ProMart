@@ -34,7 +34,7 @@ import {
 // Get All Products
 const helper = axios.create({
   // baseURL : "https://pro-mart.vercel.app",
-  baseURL : "https://pro-mart-deepanshu-12011111-nitkkracin.vercel.app",
+  baseURL : "https://pro-mart.vercel.app",
 });
 export const getProduct =
   (keyword = "", currentPage = 1, price = [0, 25000], category, ratings = 0) =>

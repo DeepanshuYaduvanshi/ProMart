@@ -45,7 +45,7 @@ import NotFound from "./component/layout/Not Found/NotFound";
 
 const helper = axios.create({
   // baseURL : "https://pro-mart.vercel.app",
-  baseURL : "https://pro-mart-deepanshu-12011111-nitkkracin.vercel.app",
+  baseURL : "https://pro-mart.vercel.app",
 });
 
 function App() {
@@ -77,7 +77,7 @@ function App() {
     <Router>
       <Header />
 
-      {isAuthenticated && <UserOptions user={user} />}
+      {/* {isAuthenticated && <UserOptions user={user} />} */}
 
       {stripeApiKey && (
         <Elements stripe={loadStripe(stripeApiKey)}>
