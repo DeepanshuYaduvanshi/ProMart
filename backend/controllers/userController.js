@@ -108,7 +108,7 @@ exports.forgotPassword = catchAsyncErrors(async (req, res, next) => {
 
     await user.save({ validateBeforeSave: false });
  // error throw
-    return next(new ErrorHander(error.message, 500));
+    return next(new ErrorHander("Network Error occured", 500));     // error.message
   }
 });
 
@@ -184,32 +184,32 @@ exports.updateProfile = catchAsyncErrors(async (req, res, next) => {
     name: req.body.name,
     email: req.body.email,
   };
+  // console.log("1")
+  // if (req.body.avatar !== "") {
+  //   const user = await User.findById(req.user.id);
 
-  if (req.body.avatar !== "") {
-    const user = await User.findById(req.user.id);
+  //   const imageId = user.avatar.public_id;
 
-    const imageId = user.avatar.public_id;
+  //   await cloudinary.v2.uploader.destroy(imageId);
 
-    await cloudinary.v2.uploader.destroy(imageId);
-
-    const myCloud = await cloudinary.v2.uploader.upload(req.body.avatar, {
-      folder: "avatars",
-      width: 150,
-      crop: "scale",
-    });
-
-    newUserData.avatar = {
-      public_id: myCloud.public_id,
-      url: myCloud.secure_url,
-    };
-  }
-
+  //   const myCloud = await cloudinary.v2.uploader.upload(req.body.avatar, {
+  //     folder: "avatars",
+  //     width: 150,
+  //     crop: "scale",
+  //   });
+  //   console.log("2")
+  //   newUserData.avatar = {
+  //     public_id: myCloud.public_id,
+  //     url: myCloud.secure_url,
+  //   };
+  // }
+  // console.log("3")
   const user = await User.findByIdAndUpdate(req.user.id, newUserData, {
     new: true,
     runValidators: true,
     useFindAndModify: false,
   });
-
+  // console.log("4")
   res.status(200).json({
     success: true,
   });

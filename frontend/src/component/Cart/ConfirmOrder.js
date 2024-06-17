@@ -33,7 +33,8 @@ const ConfirmOrder = ({ history }) => {
 
     sessionStorage.setItem("orderInfo", JSON.stringify(data));
 
-    history.push("/process/payment");
+    // history.push("/process/payment");
+    history.push("/payment/process");
   };
 
   return (

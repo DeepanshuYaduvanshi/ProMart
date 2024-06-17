@@ -8,11 +8,11 @@ import {
   CardNumberElement,
   CardCvcElement,
   CardExpiryElement,
-  useStripe,
-  useElements,
+  // useStripe,
+  // useElements,
 } from "@stripe/react-stripe-js";
 
-import axios from "axios";
+// import axios from "axios";
 import "./payment.css";
 import CreditCardIcon from "@material-ui/icons/CreditCard";
 import EventIcon from "@material-ui/icons/Event";
@@ -24,17 +24,10 @@ const Payment = ({ history }) => {
 
   const dispatch = useDispatch();
   const alert = useAlert();
-  const stripe = useStripe();
-  const elements = useElements();
   const payBtn = useRef(null);
 
   const { shippingInfo, cartItems } = useSelector((state) => state.cart);
-  const { user } = useSelector((state) => state.user);
   const { error } = useSelector((state) => state.newOrder);
-
-  const paymentData = {
-    amount: Math.round(orderInfo.totalPrice * 100),
-  };
 
   const order = {
     shippingInfo,
@@ -45,69 +38,38 @@ const Payment = ({ history }) => {
     totalPrice: orderInfo.totalPrice,
   };
 
+
   const submitHandler = async (e) => {
     e.preventDefault();
-
+  
     payBtn.current.disabled = true;
-
+  
     try {
-      const config = {
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": `Bearer sk_test_51NXKbPSG8OyI7jbT66rowxhfp1DNkYANcbB7QPmkSfkAz3IyPnqxxZezcMn9uWXvHpnUyM7L213M0oyiJVNms6Oh00XNLjXRWX`,
-
+      const simulatedPaymentResult = {
+        paymentIntent: {
+          id: 'simulated_payment_intent_id',
+          status: 'succeeded',
         },
       };
-      const { data } = await axios.post(
-        "/api/v1/payment/process",
-        paymentData,
-        config
-      );
-
-      const client_secret = data.client_secret;
-
-      if (!stripe || !elements) return;
-
-      const result = await stripe.confirmCardPayment(client_secret, {
-        payment_method: {
-          card: elements.getElement(CardNumberElement),
-          billing_details: {
-            name: user.name,
-            email: user.email,
-            address: {
-              line1: shippingInfo.address,
-              city: shippingInfo.city,
-              state: shippingInfo.state,
-              postal_code: shippingInfo.pinCode,
-              country: shippingInfo.country,
-            },
-          },
-        },
-      });
-
-      if (result.error) {
-        payBtn.current.disabled = false;
-
-        alert.error(result.error.message);
+  
+      if (simulatedPaymentResult.paymentIntent.status === 'succeeded') {
+        order.paymentInfo = {
+          id: simulatedPaymentResult.paymentIntent.id,
+          status: simulatedPaymentResult.paymentIntent.status,
+        };
+  
+        dispatch(createOrder(order));
+  
+        history.push('/success');
       } else {
-        if (result.paymentIntent.status === "succeeded") {
-          order.paymentInfo = {
-            id: result.paymentIntent.id,
-            status: result.paymentIntent.status,
-          };
-
-          dispatch(createOrder(order));
-
-          history.push("/success");
-        } else {
-          alert.error("There's some issue while processing payment ");
-        }
+        alert.error("There's some issue while processing payment");
       }
     } catch (error) {
       payBtn.current.disabled = false;
-      alert.error(error.response.data.message);
+      alert.error('Simulated payment failed.');
     }
   };
+  
 
   useEffect(() => {
     if (error) {

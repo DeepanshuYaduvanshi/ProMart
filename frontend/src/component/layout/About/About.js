@@ -4,7 +4,7 @@ import { Button, Typography, Avatar } from "@material-ui/core";
 import YouTubeIcon from "@material-ui/icons/GitHub";
 import InstagramIcon from "@material-ui/icons/LinkedIn";
 const About = () => {
-  const visitInstagram = () => {
+  const visitLinkedin = () => {
     window.location = "https://www.linkedin.com/in/deepanshu-yaduvanshi-30aa29229/";
   };
   return (
@@ -18,11 +18,11 @@ const About = () => {
           <div>
             <Avatar
               style={{ width: "10vmax", height: "10vmax", margin: "2vmax 0" }}
-              src="https://media.licdn.com/dms/image/C4D03AQEbOoi7CSp-mQ/profile-displayphoto-shrink_400_400/0/1656678735779?e=1695859200&v=beta&t=reMNeVRdgzZ3xkYHL2cIPVa9_VtakSaFb7g--XJfZp8"
+              src="https://media.geeksforgeeks.org/auth/profile/59yuv0r84c2xm9hzltfq"
               alt="Founder"
             />
             <Typography>Deepanshu Yaduvanshi</Typography>
-            <Button onClick={visitInstagram} color="primary">
+            <Button onClick={visitLinkedin} color="primary">
               Visit LinkedIn
             </Button>
             <span>
