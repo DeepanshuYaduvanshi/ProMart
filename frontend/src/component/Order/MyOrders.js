@@ -87,8 +87,7 @@ const MyOrders = () => {
 
   return (
     <Fragment>
-      <MetaData title={`${user.name} - Orders`} />
-
+      {user && <MetaData title={`${user.name} - Orders`} />}
       {loading ? (
         <Loader />
       ) : (
