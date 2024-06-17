@@ -84,7 +84,7 @@ export const loadUser = () => async (dispatch) => {
 
     dispatch({ type: LOAD_USER_SUCCESS, payload: data.user });
   } catch (error) {
-    dispatch({ type: LOAD_USER_FAIL, payload: error.response ? error.response.data.message : "NULL" });
+    dispatch({ type: LOAD_USER_FAIL, payload: error.response ? error.response.data.message : null });
   }
 };
 
@@ -95,7 +95,7 @@ export const logout = () => async (dispatch) => {
 
     dispatch({ type: LOGOUT_SUCCESS });
   } catch (error) {
-    dispatch({ type: LOGOUT_FAIL, payload: error.response.data.message });
+    dispatch({ type: LOGOUT_FAIL, payload: error.response.data ? error.response.data.message : null });
   }
 };
 
